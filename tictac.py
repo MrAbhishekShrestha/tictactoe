@@ -1,11 +1,9 @@
 """  A module to create a two player tic tac toe game.
-- SEE wikipedia for tictactoe
 view => model => controller
 
 - initialize game board ()
 - player 1 : X
 - player 2 : O
-
 
 postions:
 1 2 3
@@ -20,10 +18,10 @@ _ _ _      _ _ _     _ _ _    _ _ _
 
 """
 import sys
-# main game function
 
 
 def tic_tac_toe():
+    """Main Game function. Contains game loop."""
     gameState = initialize()
     gameOver = False
     res = 0
@@ -51,7 +49,9 @@ def tic_tac_toe():
     for row in gameState:
         print(*list(map(converter, row)))
     print()
+    # print winner
     print(winner(res))
+    # restart?
     restart = input('type r to restart & any other key to exit: \n\n\n')
     if restart == "r" or restart == "R":
         tic_tac_toe()
@@ -59,6 +59,7 @@ def tic_tac_toe():
 
 
 def initialize():
+    """Initializes the gameBoard by returning a 3*3 array of 0s."""
     board = []
     for _ in range(3):
         board.append([0]*3)
@@ -66,6 +67,7 @@ def initialize():
 
 
 def print_state(board, xTurn):
+    """Prints the instructions and current state of the board."""
     # 0 => _
     # 1 => X
     # 2 => O
@@ -89,6 +91,7 @@ def print_state(board, xTurn):
 
 
 def converter(elem):
+    """While printing the board, converts 0s, 1s and 2s to respective ASCII characters."""
     if elem == 0:
         return "_"
     elif elem == 1:
@@ -98,6 +101,7 @@ def converter(elem):
 
 
 def valid_pos(board, pos):
+    """Checks if the position entered by user is valid (in range and empty)."""
     res = False
     if pos < 1 or pos > 9:
         return False
@@ -123,6 +127,7 @@ def valid_pos(board, pos):
 
 
 def newState(board, pos, xTurn):
+    """Takes the old state of the game and the new position, and based on whose turn it is (X or O), it updates the gameState and returns it."""
     if xTurn:
         value = 1
     else:
@@ -149,6 +154,7 @@ def newState(board, pos, xTurn):
 
 
 def check_gameOver(board):
+    """Checks if the game is over. Considers all gameover conditions as listed below."""
     # top row
     if board[0][0] == board[0][1] == board[0][2] != 0:
         return True, board[0][0]
@@ -181,6 +187,7 @@ def check_gameOver(board):
 
 
 def tie(board):
+    """Checks if the game has tied. If board has no 0s, then game is tied"""
     for row in board:
         if 0 in row:
             return False
@@ -188,6 +195,7 @@ def tie(board):
 
 
 def winner(res):
+    """Returns result of the game after the game is over"""
     if res == 1:
         return "X is the winner!\n"
     elif res == 2:
@@ -199,10 +207,6 @@ def winner(res):
 # b1 = [[2, 0, 1],
 #       [0, 1, 2],
 #       [1, 0, 1]]
-
-# print(valid_pos(b1, 2, True))
-# print(check_gameOver([[1, 1, 1], [0, 0, 0], [0, 0, 0]]))
-# print("haha")
 
 
 # initial game call
