@@ -9,4 +9,5 @@ To play, just enter a number from 1 to 9, where each position is equivalent to a
 4 5 6 <br>
 7 8 9 <br>
 
-After the game is over, press r to restart <br>
+After the game is over, press r to restart  <br>
+Press any other key to exit.
